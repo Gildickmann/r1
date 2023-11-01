@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Calibri', sans-serif;
+    text-align: center;
+    padding-top: 20%;
+}
+button {
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    padding: 10px 24px;
+}
+#years, #months, #days, #hours, #minutes {
+    visibility: hidden;
+    font-size: 32px;
+}
+</style>
+</head>
+<body>
+
+<h1>240 Babies, elderly people, men and women are kidnapped in the hands of Hamas.</h1>
+
+<button onclick="startStopwatch()">How long has it been?</button>
+
+<h2 id="years">0 Years</h2>
+<h2 id="months">0 Months</h2>
+<h2 id="days">0 Days</h2>
+<h2 id="hours">0 Hours</h2>
+<h2 id="minutes">0 Minutes</h2>
+
+<script>
+var minutes = 0;
+var hours = 0;
+var days = 0;
+var months = 0;
+var years = 0;
+
+// Set the start date and time
+var startDate = new Date("2023-10-07T10:00:00");
+var now = new Date();
+
+// Calculate the difference in seconds
+var diffInSeconds = Math.floor((now - startDate) / 1000);
+
+// Calculate the initial years, months, days, hours and minutes
+years = Math.floor(diffInSeconds * 240 / (60 * 60 * 24 * 30 * 12));
+diffInSeconds -= years * (60 * 60 * 24 * 30 * 12) / 240;
+months = Math.floor(diffInSeconds * 240 / (60 * 60 * 24 * 30));
+diffInSeconds -= months * (60 * 60 * 24 * 30) / 240;
+days = Math.floor(diffInSeconds * 240 / (60 * 60 * 24));
+diffInSeconds -= days * (60 * 60 * 24) / 240;
+hours = Math.floor(diffInSeconds * 240 / (60 * 60));
+diffInSeconds -= hours * (60 * 60) / 240;
+minutes = Math.floor(diffInSeconds * 240 / (60));
+
+function startStopwatch() {
+    document.getElementById("years").style.visibility = "visible";
+    document.getElementById("months").style.visibility = "visible";
+    document.getElementById("days").style.visibility = "visible";
+    document.getElementById("hours").style.visibility = "visible";
+    document.getElementById("minutes").style.visibility = "visible";
+    setInterval(function() {
+        minutes += Math.floor(4);
+        if (minutes >= 60) {
+            hours += Math.floor(minutes / 60);
+            minutes = minutes % 60;
+        }
+        if (hours >= 24) {
+            days += Math.floor(hours / 24);
+            hours = hours % 24;
+        }
+        if (days >= 30) {
+            months += Math.floor(days / 30);
+            days = days % 30;
+        }
+        if (months >= 12) {
+            years += Math.floor(months / 12);
+            months = months % 12;
+        }
+        document.getElementById("years").innerHTML = years + " Years";
+        document.getElementById("months").innerHTML = months + " Months";
+        document.getElementById("days").innerHTML = days + " Days";
+        document.getElementById("hours").innerHTML = hours + " Hours";
+        document.getElementById("minutes").innerHTML = minutes + " Minutes";
+    }, 1000);
+}
+</script>
+
+</body>
+</html>
