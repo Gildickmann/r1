@@ -17,7 +17,7 @@ button {
 }
 #years, #months, #days, #hours, #minutes {
     visibility: hidden;
-    font-size: 32px;
+    font-size: 40px;
 }
 </style>
 </head>
@@ -89,6 +89,12 @@ function startStopwatch() {
         document.getElementById("minutes").innerHTML = minutes + " Minutes";
     }, 1000);
 }
+</script>
+
+<h1 id="hashtag" style="color:white; visibility:hidden;">#BringThemHome</h1>
+
+<script>
+document.getElementById("hashtag").style.visibility = "visible";
 </script>
 
 </body>
